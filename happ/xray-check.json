@@ -1,0 +1,17 @@
+{
+  "log": {"loglevel": "warning"},
+  "inbounds": [],
+  "outbounds": [
+    {"tag": "direct", "protocol": "freedom"},
+    {"tag": "proxy", "protocol": "blackhole"}
+  ],
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {"type": "field", "domain": ["geosite:alexclubs-direct"], "outboundTag": "direct"},
+      {"type": "field", "ip": ["geoip:alexclubs-direct"], "outboundTag": "direct"},
+      {"type": "field", "domain": ["geosite:alexclubs-proxy"], "outboundTag": "proxy"},
+      {"type": "field", "ip": ["geoip:alexclubs-proxy"], "outboundTag": "proxy"}
+    ]
+  }
+}
