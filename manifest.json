@@ -1,0 +1,49 @@
+{
+  "source_commit": "dd9d1315a70b23de7010e142d52dbb3b0d7b9144",
+  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/dd9d1315a70b23de7010e142d52dbb3b0d7b9144/vpn_rules.conf",
+  "source_commit_date": "2026-09-08T10:37:46+03:00",
+  "source_sha256": "5176b464efbbf31dec91f259a1972325bd12c81557af86719ea27bf9a9f804f8",
+  "profile_name": "AlexClubs Selective",
+  "checks": {
+    "domain_probes": 1227,
+    "ip_probes": 92
+  },
+  "counts": {
+    "DirectSites": 6,
+    "DirectIp": 11,
+    "ProxySites": 153,
+    "ProxyIp": 23
+  },
+  "delivery": "Client fetches remote geofiles; no subscription or VPN server integration",
+  "asn_note": "RIPEstat observed BGP prefix snapshot; refreshed on build, not live ASN matching",
+  "files": {
+    "geosite.dat": {
+      "bytes": 2994,
+      "sha256": "7676cddaa7746c1d431f545ca8d83d041c5c3ff44083d128adf0153e7847307d"
+    },
+    "geoip.dat": {
+      "bytes": 526,
+      "sha256": "7c328b00b06b27ef1f662d31597555544cb61be05e32b4635f45df4b0b4a533d"
+    },
+    "profile.json": {
+      "bytes": 847,
+      "sha256": "bd48f1ce292bfa196b0845feadbb1cc25c9b26d4aa76de4cb21a82ecdb8924bb"
+    },
+    "rules.json": {
+      "bytes": 5174,
+      "sha256": "a1c4e53b7a32845b58476492fe2f11bc074e1bbe368cecc2d38a9f79d21ffe54"
+    },
+    "asn-prefixes.json": {
+      "bytes": 4046,
+      "sha256": "6b391044624b620d8f979c2fd602ba9a17da6cf773ecfb3a1e86a51b029640f1"
+    },
+    "IMPORT-HAPP.txt": {
+      "bytes": 984,
+      "sha256": "737091c8add0a5a5d285d098d7356592ee1e3a1e4176d92cfba15e9b49553ac9"
+    },
+    "README.md": {
+      "bytes": 1070,
+      "sha256": "6924e5c55e595ca652adcbc54b998e2d8c687ef884b2f00bd14e53d392d4d58a"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "Name": "AlexClubs Selective",
+  "GlobalProxy": "false",
+  "RemoteDNSType": "DoH",
+  "RemoteDNSDomain": "https://dns.google/dns-query",
+  "RemoteDNSIP": "8.8.8.8",
+  "DomesticDNSType": "DoH",
+  "DomesticDNSDomain": "https://dns10.quad9.net/dns-query",
+  "DomesticDNSIP": "9.9.9.10",
+  "DnsHosts": {
+    "dns.google": "8.8.8.8",
+    "dns10.quad9.net": "9.9.9.10"
+  },
+  "DirectSites": [
+    "geosite:alexclubs-direct"
+  ],
+  "DirectIp": [
+    "geoip:alexclubs-direct"
+  ],
+  "ProxySites": [
+    "geosite:alexclubs-proxy"
+  ],
+  "ProxyIp": [
+    "geoip:alexclubs-proxy"
+  ],
+  "BlockSites": [],
+  "BlockIp": [],
+  "DomainStrategy": "AsIs",
+  "FakeDNS": "false",
+  "Geoipurl": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/happ-data/geoip.dat",
+  "Geositeurl": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/happ-data/geosite.dat"
+}
