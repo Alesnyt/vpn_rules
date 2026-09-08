@@ -1,0 +1,9 @@
+{
+  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/cd9b9deb31ea3f78afd91e0a3f1002a56ceadb50/vpn_rules.conf",
+  "source_commit": "cd9b9deb31ea3f78afd91e0a3f1002a56ceadb50",
+  "source_commit_date": "2026-09-07T09:52:17Z",
+  "fetched_at": "2026-09-08T07:01:13.459471+00:00",
+  "sha256": "5176b464efbbf31dec91f259a1972325bd12c81557af86719ea27bf9a9f804f8",
+  "upstream_text_sha256": "5a6110fbef9184df3d8afa476f9e9aeb57cf1710b27a3804f21c535e3a461bbb",
+  "snapshot_normalization": "LF text with exactly one terminal newline"
+}

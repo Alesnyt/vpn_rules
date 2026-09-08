@@ -1,0 +1,633 @@
+{
+  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/cd9b9deb31ea3f78afd91e0a3f1002a56ceadb50/vpn_rules.conf",
+  "source_commit": "cd9b9deb31ea3f78afd91e0a3f1002a56ceadb50",
+  "source_commit_date": "2026-09-07T09:52:17Z",
+  "fetched_at": "2026-09-08T07:01:13.459471+00:00",
+  "sha256": "5176b464efbbf31dec91f259a1972325bd12c81557af86719ea27bf9a9f804f8",
+  "upstream_text_sha256": "5a6110fbef9184df3d8afa476f9e9aeb57cf1710b27a3804f21c535e3a461bbb",
+  "snapshot_normalization": "LF text with exactly one terminal newline",
+  "profile_name": "AlexClubs Selective v1",
+  "source_rule_count": 275,
+  "counts": {
+    "DirectSites": 6,
+    "DirectIp": 11,
+    "ProxySites": 153,
+    "ProxyIp": 23
+  },
+  "omitted_direct_tail": [
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "ts.net",
+      "action": "DIRECT",
+      "line": 308
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "t2.ru",
+      "action": "DIRECT",
+      "line": 314
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "tele2.ru",
+      "action": "DIRECT",
+      "line": 315
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "max.ru",
+      "action": "DIRECT",
+      "line": 316
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "mos.ru",
+      "action": "DIRECT",
+      "line": 323
+    },
+    {
+      "kind": "DOMAIN",
+      "value": "mosmetro.edna.io",
+      "action": "DIRECT",
+      "line": 324
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "edna.io",
+      "action": "DIRECT",
+      "line": 325
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "gosuslugi.ru",
+      "action": "DIRECT",
+      "line": 332
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "gosuslugi.com",
+      "action": "DIRECT",
+      "line": 333
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "gu-st.ru",
+      "action": "DIRECT",
+      "line": 334
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "nalog.gov.ru",
+      "action": "DIRECT",
+      "line": 335
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "mosreg.ru",
+      "action": "DIRECT",
+      "line": 336
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "rt.ru",
+      "action": "DIRECT",
+      "line": 343
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "rtk.ru",
+      "action": "DIRECT",
+      "line": 344
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "rostelecom.ru",
+      "action": "DIRECT",
+      "line": 345
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "rt-static.ru",
+      "action": "DIRECT",
+      "line": 346
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "wink.ru",
+      "action": "DIRECT",
+      "line": 348
+    },
+    {
+      "kind": "DOMAIN-KEYWORD",
+      "value": "wink",
+      "action": "DIRECT",
+      "line": 349
+    },
+    {
+      "kind": "DOMAIN-KEYWORD",
+      "value": "rtcdn",
+      "action": "DIRECT",
+      "line": 350
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "split.io",
+      "action": "DIRECT",
+      "line": 352
+    },
+    {
+      "kind": "IP-CIDR",
+      "value": "80.254.145.118/32",
+      "action": "DIRECT",
+      "line": 354
+    },
+    {
+      "kind": "IP-CIDR",
+      "value": "46.235.186.0/24",
+      "action": "DIRECT",
+      "line": 355
+    },
+    {
+      "kind": "IP-CIDR",
+      "value": "212.193.147.0/24",
+      "action": "DIRECT",
+      "line": 356
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "vk.com",
+      "action": "DIRECT",
+      "line": 363
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "vk.ru",
+      "action": "DIRECT",
+      "line": 364
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "userapi.com",
+      "action": "DIRECT",
+      "line": 365
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "vkuser.net",
+      "action": "DIRECT",
+      "line": 366
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "vkcdn.net",
+      "action": "DIRECT",
+      "line": 367
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "vkvideo.ru",
+      "action": "DIRECT",
+      "line": 368
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "mail.ru",
+      "action": "DIRECT",
+      "line": 369
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "mycdn.me",
+      "action": "DIRECT",
+      "line": 370
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "icq.net",
+      "action": "DIRECT",
+      "line": 371
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "edgecenter.ru",
+      "action": "DIRECT",
+      "line": 372
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "ok.ru",
+      "action": "DIRECT",
+      "line": 373
+    },
+    {
+      "kind": "DOMAIN-KEYWORD",
+      "value": "yandex",
+      "action": "DIRECT",
+      "line": 380
+    },
+    {
+      "kind": "DOMAIN-KEYWORD",
+      "value": "yastatic",
+      "action": "DIRECT",
+      "line": 381
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "yandex.ru",
+      "action": "DIRECT",
+      "line": 382
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "yandex.net",
+      "action": "DIRECT",
+      "line": 383
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "yandex.com",
+      "action": "DIRECT",
+      "line": 384
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "yastatic.net",
+      "action": "DIRECT",
+      "line": 385
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "yandexcloud.net",
+      "action": "DIRECT",
+      "line": 386
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "kinopoisk.ru",
+      "action": "DIRECT",
+      "line": 387
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "sber.ru",
+      "action": "DIRECT",
+      "line": 394
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "sberbank.ru",
+      "action": "DIRECT",
+      "line": 395
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "tbank.ru",
+      "action": "DIRECT",
+      "line": 396
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "tinkoff.ru",
+      "action": "DIRECT",
+      "line": 397
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "alfabank.ru",
+      "action": "DIRECT",
+      "line": 398
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "vtb.ru",
+      "action": "DIRECT",
+      "line": 399
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "gazprombank.ru",
+      "action": "DIRECT",
+      "line": 400
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "raiffeisen.ru",
+      "action": "DIRECT",
+      "line": 401
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "open.ru",
+      "action": "DIRECT",
+      "line": 402
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "psbank.ru",
+      "action": "DIRECT",
+      "line": 403
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "rsb.ru",
+      "action": "DIRECT",
+      "line": 404
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "banki.ru",
+      "action": "DIRECT",
+      "line": 405
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "mironline.ru",
+      "action": "DIRECT",
+      "line": 406
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "nspk.ru",
+      "action": "DIRECT",
+      "line": 407
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "mts.ru",
+      "action": "DIRECT",
+      "line": 414
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "beeline.ru",
+      "action": "DIRECT",
+      "line": 415
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "megafon.ru",
+      "action": "DIRECT",
+      "line": 416
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "yota.ru",
+      "action": "DIRECT",
+      "line": 417
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "ozon.ru",
+      "action": "DIRECT",
+      "line": 424
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "ozonusercontent.com",
+      "action": "DIRECT",
+      "line": 425
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "wildberries.ru",
+      "action": "DIRECT",
+      "line": 426
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "wb.ru",
+      "action": "DIRECT",
+      "line": 427
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "wbbasket.ru",
+      "action": "DIRECT",
+      "line": 428
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "avito.ru",
+      "action": "DIRECT",
+      "line": 429
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "avito.st",
+      "action": "DIRECT",
+      "line": 430
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "2gis.ru",
+      "action": "DIRECT",
+      "line": 431
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "2gis.com",
+      "action": "DIRECT",
+      "line": 432
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "dgis.com",
+      "action": "DIRECT",
+      "line": 433
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "drom.ru",
+      "action": "DIRECT",
+      "line": 434
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "auto.ru",
+      "action": "DIRECT",
+      "line": 435
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "lamoda.ru",
+      "action": "DIRECT",
+      "line": 436
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "delivery-club.ru",
+      "action": "DIRECT",
+      "line": 437
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "samokat.ru",
+      "action": "DIRECT",
+      "line": 438
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "rzd.ru",
+      "action": "DIRECT",
+      "line": 445
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "tutu.ru",
+      "action": "DIRECT",
+      "line": 446
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "aeroflot.ru",
+      "action": "DIRECT",
+      "line": 447
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "s7.ru",
+      "action": "DIRECT",
+      "line": 448
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "pobeda.aero",
+      "action": "DIRECT",
+      "line": 449
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "rutube.ru",
+      "action": "DIRECT",
+      "line": 456
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "smotrim.ru",
+      "action": "DIRECT",
+      "line": 457
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "ivi.ru",
+      "action": "DIRECT",
+      "line": 458
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "okko.tv",
+      "action": "DIRECT",
+      "line": 459
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "start.ru",
+      "action": "DIRECT",
+      "line": 460
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "premier.one",
+      "action": "DIRECT",
+      "line": 461
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "trueconf.ru",
+      "action": "DIRECT",
+      "line": 468
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "trueconf.com",
+      "action": "DIRECT",
+      "line": 469
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "ru",
+      "action": "DIRECT",
+      "line": 476
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "su",
+      "action": "DIRECT",
+      "line": 477
+    },
+    {
+      "kind": "DOMAIN-SUFFIX",
+      "value": "xn--p1ai",
+      "action": "DIRECT",
+      "line": 478
+    },
+    {
+      "kind": "GEOIP",
+      "value": "ru",
+      "action": "DIRECT",
+      "line": 485
+    },
+    {
+      "kind": "FINAL",
+      "value": "",
+      "action": "DIRECT",
+      "line": 492
+    }
+  ],
+  "asn_snapshot": {
+    "211157": {
+      "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS211157",
+      "observed_at": "2026-09-08T00:00:00",
+      "min_peers_seeing": 10,
+      "visible_prefix_count": 3
+    },
+    "44907": {
+      "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS44907",
+      "observed_at": "2026-09-08T00:00:00",
+      "min_peers_seeing": 10,
+      "visible_prefix_count": 3
+    },
+    "59930": {
+      "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS59930",
+      "observed_at": "2026-09-08T00:00:00",
+      "min_peers_seeing": 10,
+      "visible_prefix_count": 3
+    },
+    "6185": {
+      "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS6185",
+      "observed_at": "2026-09-08T00:00:00",
+      "min_peers_seeing": 10,
+      "visible_prefix_count": 99
+    },
+    "62014": {
+      "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS62014",
+      "observed_at": "2026-09-08T00:00:00",
+      "min_peers_seeing": 10,
+      "visible_prefix_count": 8
+    },
+    "62041": {
+      "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS62041",
+      "observed_at": "2026-09-08T00:00:00",
+      "min_peers_seeing": 10,
+      "visible_prefix_count": 25
+    },
+    "714": {
+      "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS714",
+      "observed_at": "2026-09-08T00:00:00",
+      "min_peers_seeing": 10,
+      "visible_prefix_count": 1993
+    }
+  },
+  "important_differences": [
+    "GitHub version is authoritative for this build: Apple is PROXY, unlike the older local copy.",
+    "Shadowrocket system DNS is replaced by explicit Google DoH and Quad9 non-filtering DoH. Device test required.",
+    "AsIs avoids extra DNS queries purely for routing and approximates the source no-resolve IP rules.",
+    "ASN rules are observed BGP prefix snapshots, not live ASN lookup or exact MaxMind equivalence.",
+    "Trailing DIRECT and GEOIP RU are replaced by the DIRECT default. This preserves explicit earlier VPN exceptions.",
+    "No geosite/geoip tags are used. Happ itself may still initialize its default geo files.",
+    "No UpdateUrl, Provider ID, credentials, subscription changes or automatic publication.",
+    "Import validation and device traffic tests are separate from offline conversion tests."
+  ],
+  "device_verified": false,
+  "import_link_bytes": 6155
+}
