@@ -1,7 +1,7 @@
 {
   "211157": {
     "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS211157",
-    "observed_at": "2026-09-08T00:00:00",
+    "observed_at": "2026-10-09T00:00:00",
     "min_peers_seeing": 10,
     "visible_prefix_count": 3,
     "prefixes": [
@@ -12,7 +12,7 @@
   },
   "44907": {
     "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS44907",
-    "observed_at": "2026-09-08T00:00:00",
+    "observed_at": "2026-10-09T00:00:00",
     "min_peers_seeing": 10,
     "visible_prefix_count": 3,
     "prefixes": [
@@ -22,7 +22,7 @@
   },
   "59930": {
     "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS59930",
-    "observed_at": "2026-09-08T00:00:00",
+    "observed_at": "2026-10-09T00:00:00",
     "min_peers_seeing": 10,
     "visible_prefix_count": 3,
     "prefixes": [
@@ -33,9 +33,9 @@
   },
   "6185": {
     "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS6185",
-    "observed_at": "2026-09-08T00:00:00",
+    "observed_at": "2026-10-09T00:00:00",
     "min_peers_seeing": 10,
-    "visible_prefix_count": 99,
+    "visible_prefix_count": 100,
     "prefixes": [
       "17.253.2.0/23",
       "17.253.4.0/22",
@@ -93,6 +93,7 @@
       "2a01:b740:a06::/48",
       "2a01:b740:a08::/48",
       "2a01:b740:a0a::/48",
+      "2a01:b740:a0d::/48",
       "2a01:b740:a10::/47",
       "2a01:b740:a14::/48",
       "2a01:b740:a16::/48",
@@ -108,7 +109,7 @@
   },
   "62014": {
     "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS62014",
-    "observed_at": "2026-09-08T00:00:00",
+    "observed_at": "2026-10-09T00:00:00",
     "min_peers_seeing": 10,
     "visible_prefix_count": 8,
     "prefixes": [
@@ -120,7 +121,7 @@
   },
   "62041": {
     "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS62041",
-    "observed_at": "2026-09-08T00:00:00",
+    "observed_at": "2026-10-09T00:00:00",
     "min_peers_seeing": 10,
     "visible_prefix_count": 25,
     "prefixes": [
@@ -134,9 +135,9 @@
   },
   "714": {
     "url": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS714",
-    "observed_at": "2026-09-08T00:00:00",
+    "observed_at": "2026-10-09T00:00:00",
     "min_peers_seeing": 10,
-    "visible_prefix_count": 1993,
+    "visible_prefix_count": 2013,
     "prefixes": [
       "17.0.0.0/8",
       "57.102.0.0/15",
