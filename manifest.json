@@ -1,11 +1,11 @@
 {
-  "source_commit": "95f02fc0d3b8522cf936a34986ea6133558e72ab",
-  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/95f02fc0d3b8522cf936a34986ea6133558e72ab/vpn_rules.conf",
-  "source_commit_date": "2026-10-01T14:17:49+03:00",
-  "source_sha256": "771f622fd8be857dcca3d55ad951f61841ab58c7cea5ac661a81144134a0e277",
+  "source_commit": "e3d040648337803c338f6651274c810ddd4e69d0",
+  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/e3d040648337803c338f6651274c810ddd4e69d0/vpn_rules.conf",
+  "source_commit_date": "2026-10-10T06:48:15+03:00",
+  "source_sha256": "596aa707cb9d65d15a02eef26ae5b74c5d01372665a91bffd954548dd1347ee6",
   "profile_name": "AlexClubs Selective",
   "checks": {
-    "domain_probes": 1232,
+    "domain_probes": 1237,
     "ip_probes": 92
   },
   "counts": {
@@ -35,7 +35,7 @@
     },
     "asn-prefixes.json": {
       "bytes": 4075,
-      "sha256": "a7cc2241bec263fcd4d96c44381a1b06dc29fab8339ff1290c42c64bbfcaef2c"
+      "sha256": "7ec35d9e024211667a6cad6dab6c6970971da9f595498486075811e8e6adaf56"
     },
     "IMPORT-HAPP.txt": {
       "bytes": 984,
