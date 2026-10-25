@@ -1,7 +1,7 @@
 {
-  "source_commit": "0792344e3e5450b7506cf2ae4ca64d548465ed55",
-  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/0792344e3e5450b7506cf2ae4ca64d548465ed55/vpn_rules.conf",
-  "source_commit_date": "2026-10-25T11:37:23+03:00",
+  "source_commit": "8ea81c7a255c072b56b9992f840b7617c676ed48",
+  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/8ea81c7a255c072b56b9992f840b7617c676ed48/vpn_rules.conf",
+  "source_commit_date": "2026-10-25T12:06:20+03:00",
   "source_sha256": "e845c3a7bd4152367aa9d140cac70cfed19b095af6a5890eb71267d5ebe3a1f0",
   "profile_name": "AlexClubs Selective",
   "checks": {
@@ -14,7 +14,8 @@
     "ProxySites": 400,
     "ProxyIp": 101
   },
-  "delivery": "Client fetches remote geofiles; no subscription or VPN server integration",
+  "delivery": "Manual stable shell or optional subscription routing/add header with LastUpdated release version",
+  "subscription_profile_version": "1792919180",
   "asn_note": "RIPEstat observed BGP prefix snapshot; refreshed on build, not live ASN matching",
   "dns_bootstrap_direct": {
     "dns.google": "8.8.8.8",
@@ -44,6 +45,10 @@
     "IMPORT-HAPP.txt": {
       "bytes": 984,
       "sha256": "737091c8add0a5a5d285d098d7356592ee1e3a1e4176d92cfba15e9b49553ac9"
+    },
+    "SUBSCRIPTION-HAPP.txt": {
+      "bytes": 1020,
+      "sha256": "629751b343f9a11a0b814338568e4ecbef8678c7032cd7f41047e38d9c99d020"
     },
     "README.md": {
       "bytes": 1070,
