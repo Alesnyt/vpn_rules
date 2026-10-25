@@ -212,9 +212,26 @@ class RemoteTests(unittest.TestCase):
         verify_bundle(bundle)
         flat = json.loads(bundle["rules.json"])
         self.assertIn("domain:meduza.io", flat["ProxySites"])
-        for host in ("vk.com", "ozon.kz", "yandex.com", "cdn.wildberries.by", "example.org"):
+        for host in ("vk.com", "ozon.kz", "yandex.com", "cdn.wildberries.by", "example.org",
+                     'notagentrouter.org',
+                     'agentrouter.org.unrelated.test',
+                     'other.umami.dev',
+                     'other.bytednsdoc.com'):
             self.assertFalse(any(domain_match(p, host) for p in flat["ProxySites"]), host)
-        for host in ("meduza.io", "cdn.meduza.io", "google.ru", "telegram.org", "instagram.com"):
+        for host in ("meduza.io", "cdn.meduza.io", "google.ru", "telegram.org", "instagram.com",
+                     'agentrouter.org',
+                     'api.agentrouter.org',
+                     'co.agentrouter.org',
+                     'assets.agentrouter.org',
+                     'future.deep.agentrouter.org',
+                     'connect.linux.do',
+                     'linux.do',
+                     'cloud.umami.is',
+                     'gateway.umami.is',
+                     'eu.umami.is',
+                     'api-gateway.umami.dev',
+                     'api-gateway-eu.umami.dev',
+                     'lf3-static.bytednsdoc.com'):
             self.assertTrue(any(domain_match(p, host) for p in flat["ProxySites"]), host)
         baseline = make_bundle(SOURCE, ASNS, META)
         self.assertEqual(bundle["profile.json"], baseline["profile.json"])

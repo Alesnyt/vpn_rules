@@ -196,10 +196,27 @@ avs.io""".splitlines()
             for host in (domain, "cdn." + domain):
                 self.assertEqual(shadowrocket(host), "DIRECT", host)
         for host in ("meduza.io", "www.meduza.io", "cdn.meduza.io",
-                     "telegram.org", "instagram.com", "google.ru", "gopro.ru"):
+                     "telegram.org", "instagram.com", "google.ru", "gopro.ru",
+                     'agentrouter.org',
+                     'api.agentrouter.org',
+                     'co.agentrouter.org',
+                     'assets.agentrouter.org',
+                     'future.deep.agentrouter.org',
+                     'connect.linux.do',
+                     'linux.do',
+                     'cloud.umami.is',
+                     'gateway.umami.is',
+                     'eu.umami.is',
+                     'api-gateway.umami.dev',
+                     'api-gateway-eu.umami.dev',
+                     'lf3-static.bytednsdoc.com'):
             self.assertEqual(shadowrocket(host), "PROXY", host)
         for host in ("api.ipify.org", "example.org", "notmeduza.io",
-                     "meduza.io.unrelated.test", "sber.ru"):
+                     "meduza.io.unrelated.test", "sber.ru",
+                     'notagentrouter.org',
+                     'agentrouter.org.unrelated.test',
+                     'other.umami.dev',
+                     'other.bytednsdoc.com'):
             self.assertEqual(shadowrocket(host), "DIRECT", host)
 
 
