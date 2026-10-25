@@ -142,5 +142,66 @@ class ProfileTests(unittest.TestCase):
             parse("[Rule]\nPROCESS-NAME,test,PROXY\nFINAL,DIRECT\n")
 
 
+class CurrentShadowrocketTests(unittest.TestCase):
+    def test_current_client_direct_services_and_meduza(self):
+        # Exercise first-match domain rules in the current Shadowrocket source.
+        source = (ROOT.parent / "vpn_rules.conf").read_text()
+        domains = """su
+xn--p1ai
+moscow
+ya.cc
+yandex.com
+yandex.net
+yango.com
+vk.com
+vk.cc
+mvk.com
+mycdn.me
+my.com
+my.games
+ok.me
+kaspersky.com
+ozon.com
+ozon.by
+ozon.kz
+wildberries.by
+wildberries.kz
+2gis.com
+magnit.com
+fix-price.com
+x5.tech
+megafon.com
+moex.com
+okko.tv
+okko.sport
+boosty.to
+lenta.com
+premier.one
+hh.by
+hh.kz
+mosmetro.tech
+avs.io""".splitlines()
+        rules = parse(source)
+        def shadowrocket(host):
+            for rule in rules:
+                if rule["kind"] in DOMAIN_TYPES and domain_match(
+                        DOMAIN_TYPES[rule["kind"]] + rule["value"], host):
+                    return rule["action"]
+                if rule["kind"] == "FINAL":
+                    return rule["action"]
+
+        for domain in domains:
+            self.assertEqual(source.splitlines().count(
+                f"DOMAIN-SUFFIX,{domain},DIRECT"), 1, domain)
+            for host in (domain, "cdn." + domain):
+                self.assertEqual(shadowrocket(host), "DIRECT", host)
+        for host in ("meduza.io", "www.meduza.io", "cdn.meduza.io",
+                     "telegram.org", "instagram.com", "google.ru", "gopro.ru"):
+            self.assertEqual(shadowrocket(host), "PROXY", host)
+        for host in ("api.ipify.org", "example.org", "notmeduza.io",
+                     "meduza.io.unrelated.test", "sber.ru"):
+            self.assertEqual(shadowrocket(host), "DIRECT", host)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
