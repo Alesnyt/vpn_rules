@@ -1,0 +1,11 @@
+[Unit]
+Description=Check AlexClubs Happ routing releases every ten minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=10min
+RandomizedDelaySec=30s
+Unit=alexclubs-happ-routing.service
+
+[Install]
+WantedBy=timers.target

@@ -30,7 +30,7 @@
 
 Редактировать **vpn_rules.conf** в ветке `main`, как для Shadowrocket. GitHub Actions проверит изменения и соберёт внешние GeoSite/GeoIP-списки в ветке `happ-data`. Happ получает их по постоянным адресам через обновление геофайлов; повторно импортировать профиль при изменении доменов/IP не требуется.
 
-**Автообновление через подписку Happ:** панель может передавать [SUBSCRIPTION-HAPP.txt](https://raw.githubusercontent.com/Alesnyt/vpn_rules/happ-data/SUBSCRIPTION-HAPP.txt) в заголовке `Routing`. Это тот же профиль с именем AlexClubs Selective и меткой версии `LastUpdated`; DNS и маршруты не меняются. На iPhone для подписки AlexClubs включить автообновление и «Обновить при открытии». При новой версии Happ скачает GeoSite/GeoIP по сохранённым адресам. Настройка конкретного сервера и проверка телефона описаны в [инструкции](happ/REMOTE.md#автообновление-через-подписку-alexclubs).
+**Автообновление через подписку Happ:** серверный таймер проверяет GitHub примерно раз в 10 минут и передаёт [SUBSCRIPTION-HAPP.txt](https://raw.githubusercontent.com/Alesnyt/vpn_rules/happ-data/SUBSCRIPTION-HAPP.txt) в заголовке `Routing`. Это тот же профиль с именем AlexClubs Selective и меткой версии `LastUpdated`; DNS и маршруты не меняются. На iPhone для подписки AlexClubs включить автообновление и «Обновить при открытии». При новой версии Happ скачает GeoSite/GeoIP по сохранённым адресам. Настройка конкретного сервера и проверка телефона описаны в [инструкции](happ/REMOTE.md#автообновление-через-подписку-alexclubs).
 
 Используется `routing/add`, не `routing/onadd`; выбор активного профиля остаётся в Happ. Отдельный ручной импорт по IMPORT-HAPP.txt сохранён. Автообновление зависит от запуска и фоновой работы приложения; точное время в фоне iOS не гарантируется.
 

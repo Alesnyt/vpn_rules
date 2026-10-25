@@ -1,0 +1,22 @@
+[Unit]
+Description=Refresh AlexClubs Happ routing release metadata
+After=network-online.target x-ui.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/sbin/alexclubs-happ-routing
+TimeoutStartSec=120
+StateDirectory=alexclubs-happ-routing
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/etc/x-ui
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
