@@ -96,6 +96,13 @@ def verify_bundle(bundle):
     assert bundle["IMPORT-HAPP.txt"].startswith(prefix)
     decoded = json.loads(base64.b64decode(bundle["IMPORT-HAPP.txt"].strip()[len(prefix):], validate=True))
     assert decoded == profile
+    assert bundle["SUBSCRIPTION-HAPP.txt"].startswith(prefix)
+    subscription = json.loads(base64.b64decode(
+        bundle["SUBSCRIPTION-HAPP.txt"].strip()[len(prefix):], validate=True))
+    version = subscription.pop("LastUpdated")
+    assert version == manifest["subscription_profile_version"]
+    assert int(version) > 0
+    assert subscription == profile  # Delivery metadata cannot change routing/DNS.
 
 
 class RemoteTests(unittest.TestCase):
@@ -213,6 +220,18 @@ class RemoteTests(unittest.TestCase):
         self.assertEqual(bundle["profile.json"], baseline["profile.json"])
         self.assertEqual(bundle["IMPORT-HAPP.txt"], baseline["IMPORT-HAPP.txt"])
 
+    def test_subscription_release_version_without_policy_change(self):
+        first = make_bundle(SOURCE, ASNS, META)
+        metadata = {**META, "source_commit_date": "2026-10-25T09:00:00+00:00"}
+        second = make_bundle(SOURCE, ASNS, metadata)
+        verify_bundle(first)
+        verify_bundle(second)
+        for name in ("profile.json", "IMPORT-HAPP.txt", "geosite.dat", "geoip.dat", "rules.json"):
+            self.assertEqual(first[name], second[name], name)
+        self.assertNotEqual(first["SUBSCRIPTION-HAPP.txt"], second["SUBSCRIPTION-HAPP.txt"])
+        with self.assertRaises(ValueError):
+            make_bundle(SOURCE, ASNS, {**META, "source_commit_date": "2026-10-25T09:00:00"})
+
     def test_corrupt_binary_rejected(self):
         with self.assertRaises(ValueError):
             decode(b"\x0a\xff", True)
@@ -229,7 +248,7 @@ if __name__ == "__main__":
         manifest = json.loads(bundle["manifest.json"])
         source = (ROOT.parent / "vpn_rules.conf").read_text().rstrip("\n") + "\n"
         expected = make_bundle(source, asns, manifest)
-        for name in ("profile.json", "IMPORT-HAPP.txt", "rules.json", "geosite.dat", "geoip.dat"):
+        for name in ("profile.json", "IMPORT-HAPP.txt", "SUBSCRIPTION-HAPP.txt", "rules.json", "geosite.dat", "geoip.dat"):
             assert bundle[name] == expected[name], name
         print("Published bundle validated: protobuf, hashes, source mapping and stable import")
     else:

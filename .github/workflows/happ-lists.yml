@@ -67,7 +67,7 @@ jobs:
             git worktree add --detach "$PUBLISH_PATH" HEAD
             git -C "$PUBLISH_PATH" switch --orphan happ-data
           fi
-          for file in geosite.dat geoip.dat profile.json IMPORT-HAPP.txt rules.json asn-prefixes.json manifest.json README.md; do
+          for file in geosite.dat geoip.dat profile.json IMPORT-HAPP.txt SUBSCRIPTION-HAPP.txt rules.json asn-prefixes.json manifest.json README.md; do
             cp "happ/dist/$file" "$PUBLISH_PATH/$file"
             git -C "$PUBLISH_PATH" add -- "$file"
           done

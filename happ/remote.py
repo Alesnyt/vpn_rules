@@ -7,6 +7,7 @@ Wire format: XTLS/Xray-core common/geodata/geodat.proto (legacy-compatible).
 import argparse
 import base64
 import concurrent.futures
+from datetime import datetime
 import hashlib
 import ipaddress
 import json
@@ -20,7 +21,7 @@ BASE = "https://raw.githubusercontent.com/Alesnyt/vpn_rules/happ-data"
 NAME = "AlexClubs Selective"
 GROUPS = ("Direct", "Proxy")
 DOMAIN_ENUM = {"keyword": 0, "domain": 2, "full": 3}
-ARTIFACTS = ("geosite.dat", "geoip.dat", "profile.json", "IMPORT-HAPP.txt",
+ARTIFACTS = ("geosite.dat", "geoip.dat", "profile.json", "IMPORT-HAPP.txt", "SUBSCRIPTION-HAPP.txt",
              "rules.json", "asn-prefixes.json", "manifest.json", "README.md")
 
 
@@ -167,6 +168,14 @@ def make_bundle(source, asns, metadata):
         profile[group + "Sites"] = ["geosite:alexclubs-" + group.lower()]
         profile[group + "Ip"] = ["geoip:alexclubs-" + group.lower()]
     compact = json.dumps(profile, ensure_ascii=False, separators=(",", ":"))
+    # The manually imported shell stays stable. Subscription delivery adds only
+    # a version stamp so Happ re-fetches unchanged GeoSite/GeoIP URLs on a release.
+    released = datetime.fromisoformat(metadata["source_commit_date"].replace("Z", "+00:00"))
+    if released.tzinfo is None or released.timestamp() <= 0:
+        raise ValueError("Subscription routing requires an absolute release date")
+    version = str(int(released.timestamp()))
+    subscription_profile = {**profile, "LastUpdated": version}
+    subscription_compact = json.dumps(subscription_profile, ensure_ascii=False, separators=(",", ":"))
     def pretty(value):
         return (json.dumps(value, ensure_ascii=False, indent=2) + "\n").encode()
     rules = {key: flat[key] for key in ("DirectSites", "DirectIp", "ProxySites", "ProxyIp")}
@@ -175,6 +184,7 @@ def make_bundle(source, asns, metadata):
         "profile.json": pretty(profile), "rules.json": pretty(rules),
         "asn-prefixes.json": pretty(asns),
         "IMPORT-HAPP.txt": ("happ://routing/add/" + base64.b64encode(compact.encode()).decode() + "\n").encode(),
+        "SUBSCRIPTION-HAPP.txt": ("happ://routing/add/" + base64.b64encode(subscription_compact.encode()).decode() + "\n").encode(),
         "README.md": ("# AlexClubs Selective — обновляемые списки Happ\n\n"
                       "Эта ветка содержит результаты автоматической сборки. Не редактировать вручную.\n\n"
                       "Исходник: [vpn_rules.conf](https://github.com/Alesnyt/vpn_rules/blob/main/vpn_rules.conf).\n\n"
@@ -188,7 +198,8 @@ def make_bundle(source, asns, metadata):
     manifest = {
         **metadata, "profile_name": NAME, "checks": checks,
         "counts": {key: len(items) for key, items in rules.items()},
-        "delivery": "Client fetches remote geofiles; no subscription or VPN server integration",
+        "delivery": "Manual stable shell or optional subscription routing/add header with LastUpdated release version",
+        "subscription_profile_version": version,
         "asn_note": "RIPEstat observed BGP prefix snapshot; refreshed on build, not live ASN matching",
         "dns_bootstrap_direct": DNS_BOOTSTRAP,
         "files": {name: {"bytes": len(content), "sha256": hashlib.sha256(content).hexdigest()}
