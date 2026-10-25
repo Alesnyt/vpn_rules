@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 import subprocess
 
-from build_profile import build, parse, fetch_asn, DOMAIN_TYPES
+from build_profile import build, parse, fetch_asn, DOMAIN_TYPES, DNS_BOOTSTRAP
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://raw.githubusercontent.com/Alesnyt/vpn_rules/happ-data"
@@ -134,6 +134,16 @@ def validate_mapping(source, asns, flat):
                 match = ip_match(destination, asns[value]["prefixes"])
             if match:
                 expected = rule["action"]
+                # Preserve Happ's existing exact resolver exceptions when a new
+                # broad ASN/parent-domain rule covers them. Explicit conflicting
+                # resolver rules still fail; no general priority check is relaxed.
+                if expected == "PROXY":
+                    if (is_ip and kind == "IP-ASN" and
+                            str(destination) in DNS_BOOTSTRAP.values()):
+                        expected = "DIRECT"
+                    elif (not is_ip and destination in DNS_BOOTSTRAP and
+                          kind == "DOMAIN-SUFFIX" and value != destination):
+                        expected = "DIRECT"
                 break
         actual = "DIRECT"
         for group in GROUPS:
@@ -180,6 +190,7 @@ def make_bundle(source, asns, metadata):
         "counts": {key: len(items) for key, items in rules.items()},
         "delivery": "Client fetches remote geofiles; no subscription or VPN server integration",
         "asn_note": "RIPEstat observed BGP prefix snapshot; refreshed on build, not live ASN matching",
+        "dns_bootstrap_direct": DNS_BOOTSTRAP,
         "files": {name: {"bytes": len(content), "sha256": hashlib.sha256(content).hexdigest()}
                   for name, content in bundle.items()},
     }

@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 import unittest
 
-from remote import make_bundle, ARTIFACTS, BASE
+from remote import make_bundle, ARTIFACTS, BASE, domain_match, ip_match, validate_mapping
 
 ROOT = Path(__file__).resolve().parent
 SOURCE = (ROOT / "reference-shadowrocket.conf").read_text()
@@ -147,6 +147,71 @@ class RemoteTests(unittest.TestCase):
     def test_dns_bootstrap_proxy_conflict_rejected(self):
         with self.assertRaises(ValueError):
             make_bundle(SOURCE.replace("[Rule]", "[Rule]\nDOMAIN,dns.google,PROXY"), ASNS, META)
+
+    def test_google_asn_preserves_exact_dns_exceptions(self):
+        source = ("[Rule]\nDOMAIN-SUFFIX,google,PROXY\n"
+                  "DOMAIN-SUFFIX,google.com,PROXY\nIP-ASN,15169,PROXY,no-resolve\n"
+                  "FINAL,DIRECT\n")
+        # Deterministic fixture, not an assertion about the current BGP table.
+        asns = {"15169": {"prefixes": ["8.8.8.0/24", "2001:4860::/32"]}}
+        bundle = make_bundle(source, asns, META)
+        verify_bundle(bundle)
+        flat = json.loads(bundle["rules.json"])
+
+        def decide(destination):
+            try:
+                address = ipaddress.ip_address(destination)
+            except ValueError:
+                address = None
+            for group in ("Direct", "Proxy"):
+                match = (ip_match(address, flat[group + "Ip"]) if address else
+                         any(domain_match(p, destination) for p in flat[group + "Sites"]))
+                if match:
+                    return group.upper()
+            return "DIRECT"
+
+        for destination in ("dns.google", "8.8.8.8", "dns10.quad9.net", "9.9.9.10"):
+            self.assertEqual(decide(destination), "DIRECT", destination)
+        for destination in ("google.com", "www.google.com", "google", "cdn.dns.google",
+                            "8.8.8.0", "8.8.8.7", "8.8.8.9", "8.8.8.255", "2001:4860::1"):
+            self.assertEqual(decide(destination), "PROXY", destination)
+        for last_octet in range(256):
+            destination = ipaddress.ip_address(f"8.8.8.{last_octet}")
+            self.assertEqual(ip_match(destination, flat["ProxyIp"]), last_octet != 8)
+        self.assertEqual(bundle["profile.json"], make_bundle(SOURCE, ASNS, META)["profile.json"])
+        self.assertEqual(bundle["IMPORT-HAPP.txt"], make_bundle(SOURCE, ASNS, META)["IMPORT-HAPP.txt"])
+        # The validator must still catch accidental bypasses of other Google hosts.
+        corrupted = {key: list(value) for key, value in flat.items()}
+        corrupted["DirectSites"].append("full:google.com")
+        with self.assertRaises(ValueError):
+            validate_mapping(source, asns, corrupted)
+
+    def test_dns_exception_does_not_hide_explicit_conflicts(self):
+        for rule in ("DOMAIN,dns.google,PROXY", "DOMAIN-SUFFIX,dns.google,PROXY",
+                     "IP-CIDR,8.8.8.8/32,PROXY,no-resolve",
+                     "IP-CIDR,8.8.8.0/24,PROXY,no-resolve"):
+            with self.subTest(rule=rule), self.assertRaises(ValueError):
+                make_bundle("[Rule]\n" + rule + "\nFINAL,DIRECT\n", {}, META)
+        source = ("[Rule]\nIP-CIDR,10.0.0.0/8,DIRECT,no-resolve\n"
+                  "IP-ASN,15169,PROXY,no-resolve\nFINAL,DIRECT\n")
+        with self.assertRaises(ValueError):
+            make_bundle(source, {"15169": {"prefixes": ["10.0.0.0/24"]}}, META)
+
+    def test_current_source_build_and_import_compatibility(self):
+        source = (ROOT.parent / "vpn_rules.conf").read_text()
+        # Real ASN refresh and full snapshot validation run at publication time.
+        asns = {**ASNS, "15169": {"prefixes": ["8.8.8.0/24", "2001:4860::/32"]}}
+        bundle = make_bundle(source, asns, META)
+        verify_bundle(bundle)
+        flat = json.loads(bundle["rules.json"])
+        self.assertIn("domain:meduza.io", flat["ProxySites"])
+        for host in ("vk.com", "ozon.kz", "yandex.com", "cdn.wildberries.by", "example.org"):
+            self.assertFalse(any(domain_match(p, host) for p in flat["ProxySites"]), host)
+        for host in ("meduza.io", "cdn.meduza.io", "google.ru", "telegram.org", "instagram.com"):
+            self.assertTrue(any(domain_match(p, host) for p in flat["ProxySites"]), host)
+        baseline = make_bundle(SOURCE, ASNS, META)
+        self.assertEqual(bundle["profile.json"], baseline["profile.json"])
+        self.assertEqual(bundle["IMPORT-HAPP.txt"], baseline["IMPORT-HAPP.txt"])
 
     def test_corrupt_binary_rejected(self):
         with self.assertRaises(ValueError):

@@ -18,6 +18,8 @@ import subprocess
 REPO = "Alesnyt/vpn_rules"
 NAME = "AlexClubs Selective v1"
 DOMAIN_TYPES = {"DOMAIN": "full:", "DOMAIN-SUFFIX": "domain:", "DOMAIN-KEYWORD": "keyword:"}
+# Existing Happ resolver endpoints must remain reachable outside the VPN.
+DNS_BOOTSTRAP = {"dns.google": "8.8.8.8", "dns10.quad9.net": "9.9.9.10"}
 
 
 def get(url):
@@ -62,6 +64,25 @@ def collapse(prefixes):
     result = []
     for version in (4, 6):
         result.extend(str(n) for n in ipaddress.collapse_addresses(n for n in networks if n.version == version))
+    return result
+
+
+def exclude_dns_bootstrap(prefixes):
+    """Carve only existing resolver IPs out of broad ASN-derived proxy ranges."""
+    exceptions = [ipaddress.ip_network(address + "/32")
+                  for address in DNS_BOOTSTRAP.values()]
+    result = []
+    for prefix in prefixes:
+        parts = [ipaddress.ip_network(prefix, strict=True)]
+        for exception in exceptions:
+            remaining = []
+            for part in parts:
+                if part.version == exception.version and exception.subnet_of(part):
+                    remaining.extend(part.address_exclude(exception))
+                else:
+                    remaining.append(part)
+            parts = remaining
+        result.extend(str(part) for part in parts)
     return result
 
 
@@ -125,13 +146,17 @@ def build(source, asn_data, metadata):
         elif kind in {"IP-CIDR", "IP-CIDR6"}:
             profile[key + "Ip"].append(str(ipaddress.ip_network(value, strict=True)))
         elif kind == "IP-ASN":
-            profile[key + "Ip"].extend(asn_data[value]["prefixes"])
+            prefixes = asn_data[value]["prefixes"]
+            if action == "PROXY":
+                prefixes = exclude_dns_bootstrap(prefixes)
+            profile[key + "Ip"].extend(prefixes)
         else:
             raise ValueError(f"Rule requires manual ordering review: {rule}")
     # These are operational exceptions, not additional destinations sent via
     # the VPN. Runtime precedence against Happ's own DNS rules needs a device test.
-    profile["DirectSites"].extend(["full:dns.google", "full:dns10.quad9.net", "full:ru.alexclubs.com"])
-    profile["DirectIp"].extend(["8.8.8.8/32", "9.9.9.10/32"])
+    profile["DirectSites"].extend("full:" + host for host in DNS_BOOTSTRAP)
+    profile["DirectSites"].append("full:ru.alexclubs.com")
+    profile["DirectIp"].extend(address + "/32" for address in DNS_BOOTSTRAP.values())
     for key in ("DirectSites", "ProxySites"):
         profile[key] = list(dict.fromkeys(profile[key]))
     for key in ("DirectIp", "ProxyIp"):
