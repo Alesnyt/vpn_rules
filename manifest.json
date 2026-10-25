@@ -1,41 +1,45 @@
 {
-  "source_commit": "e3d040648337803c338f6651274c810ddd4e69d0",
-  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/e3d040648337803c338f6651274c810ddd4e69d0/vpn_rules.conf",
-  "source_commit_date": "2026-10-10T06:48:15+03:00",
-  "source_sha256": "596aa707cb9d65d15a02eef26ae5b74c5d01372665a91bffd954548dd1347ee6",
+  "source_commit": "0792344e3e5450b7506cf2ae4ca64d548465ed55",
+  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/0792344e3e5450b7506cf2ae4ca64d548465ed55/vpn_rules.conf",
+  "source_commit_date": "2026-10-25T11:37:23+03:00",
+  "source_sha256": "e845c3a7bd4152367aa9d140cac70cfed19b095af6a5890eb71267d5ebe3a1f0",
   "profile_name": "AlexClubs Selective",
   "checks": {
-    "domain_probes": 1237,
-    "ip_probes": 92
+    "domain_probes": 2579,
+    "ip_probes": 323
   },
   "counts": {
-    "DirectSites": 6,
+    "DirectSites": 3,
     "DirectIp": 11,
-    "ProxySites": 154,
-    "ProxyIp": 23
+    "ProxySites": 400,
+    "ProxyIp": 101
   },
   "delivery": "Client fetches remote geofiles; no subscription or VPN server integration",
   "asn_note": "RIPEstat observed BGP prefix snapshot; refreshed on build, not live ASN matching",
+  "dns_bootstrap_direct": {
+    "dns.google": "8.8.8.8",
+    "dns10.quad9.net": "9.9.9.10"
+  },
   "files": {
     "geosite.dat": {
-      "bytes": 3014,
-      "sha256": "a7b4ba746555fb2df9721e06434a8c78056435c26811bb2b55a1badd21b987b4"
+      "bytes": 7131,
+      "sha256": "0c68efb99a4796ac6768f7743a5096a8af6966cf84a29d9fbc09227abc8f0696"
     },
     "geoip.dat": {
-      "bytes": 526,
-      "sha256": "7c328b00b06b27ef1f662d31597555544cb61be05e32b4635f45df4b0b4a533d"
+      "bytes": 1438,
+      "sha256": "baf035f95f3acce01e3af6f7e2c23f707639c6b390bcf163a9dfccdec08422cc"
     },
     "profile.json": {
       "bytes": 847,
       "sha256": "bd48f1ce292bfa196b0845feadbb1cc25c9b26d4aa76de4cb21a82ecdb8924bb"
     },
     "rules.json": {
-      "bytes": 5203,
-      "sha256": "c8118f9b5b1c7f89f4dd8e0cfcd69a4223c0203607d0ab874e7bfa1725db544b"
+      "bytes": 13197,
+      "sha256": "3900d333ee391b47eaafea1e9343860beef6b5e645eb389fbd82d7d255f5a744"
     },
     "asn-prefixes.json": {
-      "bytes": 4075,
-      "sha256": "7ec35d9e024211667a6cad6dab6c6970971da9f595498486075811e8e6adaf56"
+      "bytes": 5997,
+      "sha256": "446c4404e3c8dffcc48de92e21ba5e7943d81b8e0630de497c28f533c5b98950"
     },
     "IMPORT-HAPP.txt": {
       "bytes": 984,
