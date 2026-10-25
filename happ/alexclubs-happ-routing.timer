@@ -1,9 +1,10 @@
 [Unit]
-Description=Check AlexClubs Happ routing releases every ten minutes
+Description=Check AlexClubs Happ routing releases twice daily
 
 [Timer]
-OnBootSec=2min
-OnUnitInactiveSec=10min
+OnCalendar=*-*-* 09,21:00:00 Europe/Moscow
+Persistent=true
+AccuracySec=1s
 RandomizedDelaySec=30s
 Unit=alexclubs-happ-routing.service
 
