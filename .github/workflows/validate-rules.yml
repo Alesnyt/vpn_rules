@@ -31,5 +31,5 @@ jobs:
           python3 scripts/test_update_rules.py
           python3 happ/test_profile.py
           python3 happ/test_remote.py
-          python3 happ/remote.py --output "$RUNNER_TEMP/happ-preview"
+          python3 happ/remote.py --preview-uncommitted --output "$RUNNER_TEMP/happ-preview"
           python3 happ/test_remote.py --artifacts "$RUNNER_TEMP/happ-preview"
