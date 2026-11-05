@@ -41,7 +41,7 @@ jobs:
           python3 happ/test_remote.py
       - name: Check current Happ conversion before publishing
         run: |
-          python3 happ/remote.py --output "$RUNNER_TEMP/happ-preview"
+          python3 happ/remote.py --preview-uncommitted --output "$RUNNER_TEMP/happ-preview"
           python3 happ/test_remote.py --artifacts "$RUNNER_TEMP/happ-preview"
       - name: Commit only changed generated VPN rules
         run: |
