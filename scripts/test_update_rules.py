@@ -74,7 +74,7 @@ class GeneratorTests(unittest.TestCase):
         rendered = render(MANUAL, domains)
         self.assertEqual(rendered.count(BEGIN), 1)
         self.assertEqual(rendered.count(END), 1)
-        self.assertEqual(rendered.count("FINAL,DIRECT"), 1)
+        self.assertEqual(rendered.splitlines().count("FINAL,DIRECT"), 1)
         self.assertLess(rendered.index(BEGIN), rendered.index(ANCHOR))
 
     def test_route_regression_and_default(self):
