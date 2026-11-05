@@ -12,6 +12,7 @@ on:
       - happ/asn-prefixes.json
       - .github/workflows/happ-lists.yml
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: write
