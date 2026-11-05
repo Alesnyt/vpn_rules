@@ -1,0 +1,65 @@
+name: Refresh VPN blocklists and rebuild Happ
+
+on:
+  schedule:
+    # Daily at 05:27 Moscow time, even when source lists change with no manual commit.
+    - cron: '27 2 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - vpn_rules.base.conf
+      - scripts/update_rules.py
+      - scripts/test_update_rules.py
+      - .github/workflows/auto-rules.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-ru-vpn-rules
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Fetch curated upstream lists and compile vpn_rules.conf
+        run: python3 scripts/update_rules.py
+      - name: Validate generated domains and existing routing
+        run: |
+          python3 scripts/test_update_rules.py
+          python3 happ/test_profile.py
+          python3 happ/test_remote.py
+      - name: Check current Happ conversion before publishing
+        run: |
+          python3 happ/remote.py --refresh-asn --preview-uncommitted --output "$RUNNER_TEMP/happ-preview"
+          python3 happ/test_remote.py --artifacts "$RUNNER_TEMP/happ-preview"
+      - name: Commit only changed generated VPN rules
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- vpn_rules.conf; then
+            echo "No update needed"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add vpn_rules.conf
+          git commit -m 'Refresh curated RU blocklists in VPN routing config'
+          git push origin HEAD:main
+
+  # GITHUB_TOKEN commits do not trigger another push workflow.
+  # Explicitly call the existing Happ publisher after successful publication.
+  publish-happ:
+    needs: refresh
+    uses: ./.github/workflows/happ-lists.yml
+    permissions:
+      contents: write
