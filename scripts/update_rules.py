@@ -126,7 +126,8 @@ def select_domains(manual: str, feeds: dict[str, str]) -> list[str]:
             if intersects_direct(domain, direct) or already_proxy(domain, proxy):
                 continue
             # Preserve Happ's hardcoded bootstrap DNS exceptions.
-            if domain in ("dns.google", "dns10.quad9.net"):
+            if domain in ("dns.google", "dns10.quad9.net", "quad9.net",
+                          "alexclubs.com", "ru.alexclubs.com"):
                 continue
             selected.add(domain)
     if not selected or len(selected) > MAX_GENERATED_DOMAINS:
