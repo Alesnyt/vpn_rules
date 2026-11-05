@@ -210,11 +210,11 @@ def make_bundle(source, asns, metadata):
     return bundle
 
 
-def read_inputs(refresh_asn=False):
+def read_inputs(refresh_asn=False, preview_uncommitted=False):
     source = (ROOT / "vpn_rules.conf").read_text().rstrip("\n") + "\n"
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     committed = subprocess.check_output(["git", "show", revision + ":vpn_rules.conf"], cwd=ROOT, text=True)
-    if source != committed.rstrip("\n") + "\n":
+    if source != committed.rstrip("\n") + "\n" and not preview_uncommitted:
         raise ValueError("Commit source changes before publishing; source must be reproducibly pinned")
     commit_date = subprocess.check_output(["git", "show", "-s", "--format=%cI", revision], cwd=ROOT, text=True).strip()
     metadata = {"source_commit": revision,
@@ -235,8 +235,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--refresh-asn", action="store_true")
+    parser.add_argument("--preview-uncommitted", action="store_true",
+                        help="validate a generated candidate without weakening publication guard")
     args = parser.parse_args()
-    bundle = make_bundle(*read_inputs(args.refresh_asn))
+    bundle = make_bundle(*read_inputs(args.refresh_asn, args.preview_uncommitted))
     args.output.mkdir(parents=True, exist_ok=True)
     for name, content in bundle.items():
         (args.output / name).write_bytes(content)
