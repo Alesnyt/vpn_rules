@@ -18,7 +18,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parent.parent
 BASE = ROOT / "vpn_rules.base.conf"
 OUTPUT = ROOT / "vpn_rules.conf"
-ANCHOR = "# ==================================================\n# DIRECT: T2 / CORPORATE\n# =================================================="
+ANCHOR = "DOMAIN-SUFFIX,ts.net,DIRECT\n"
 BEGIN = "# BEGIN AUTO PROXY RULES (generated; edit vpn_rules.base.conf instead)"
 END = "# END AUTO PROXY RULES"
 
