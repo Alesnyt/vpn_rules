@@ -43,6 +43,7 @@
     "fe80::/10"
   ],
   "ProxySites": [
+    "full:sinoptik.ua",
     "full:tenki.jp",
     "domain:apple.com",
     "domain:apple.com.cn",
