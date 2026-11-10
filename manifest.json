@@ -1,21 +1,21 @@
 {
-  "source_commit": "20c1621aa5590e0c7dd8e9a32bd673abf0d284b4",
-  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/20c1621aa5590e0c7dd8e9a32bd673abf0d284b4/vpn_rules.conf",
-  "source_commit_date": "2026-11-10T10:41:43Z",
-  "source_sha256": "eaf40845d225731494bc7fc3fb53c26cb67bb5df5691815ab5e2d1ae1da1f841",
+  "source_commit": "8be4081a236084cd630879cd70c91b6b6334f6ad",
+  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/8be4081a236084cd630879cd70c91b6b6334f6ad/vpn_rules.conf",
+  "source_commit_date": "2026-11-10T16:37:00Z",
+  "source_sha256": "d2923189ab68ad9b1098bcb0c7d080069b8cf714972ea522eee438cdf3e6ae54",
   "profile_name": "AlexClubs Selective",
   "checks": {
-    "domain_probes": 6418,
+    "domain_probes": 6423,
     "ip_probes": 338
   },
   "counts": {
     "DirectSites": 28,
     "DirectIp": 11,
-    "ProxySites": 1134,
+    "ProxySites": 1135,
     "ProxyIp": 106
   },
   "delivery": "Manual stable shell or optional subscription routing/add header with LastUpdated release version",
-  "subscription_profile_version": "1794307303",
+  "subscription_profile_version": "1794328620",
   "asn_note": "RIPEstat observed BGP prefix snapshot; refreshed on build, not live ASN matching",
   "dns_bootstrap_direct": {
     "dns.google": "8.8.8.8",
@@ -23,8 +23,8 @@
   },
   "files": {
     "geosite.dat": {
-      "bytes": 22894,
-      "sha256": "e7318c1ed2b4729e63c996649a8c0b5f795439b5746801a48d372e402387cdef"
+      "bytes": 22912,
+      "sha256": "1c1591211dd8f12cdfcc328657593bbc43e160f78303739e408cb4434d79807a"
     },
     "geoip.dat": {
       "bytes": 1500,
@@ -35,12 +35,12 @@
       "sha256": "bd48f1ce292bfa196b0845feadbb1cc25c9b26d4aa76de4cb21a82ecdb8924bb"
     },
     "rules.json": {
-      "bytes": 35880,
-      "sha256": "5175ad1fd49eeabd6636557838436a3a8bb5dd3fcdcf56a664ef55d8a64cec33"
+      "bytes": 35905,
+      "sha256": "46baf824365b750c226606f6dceeb3a0952bcfe608a57fedb7c22ed88aca14dc"
     },
     "asn-prefixes.json": {
       "bytes": 6122,
-      "sha256": "ab87d14eb81f9f61046228ddbe0ae42191665939f5c42774b15564b17672ed98"
+      "sha256": "40ec2b037858618e923063002b81bfaf5bf207fcae2576053612f4dc3e16510e"
     },
     "IMPORT-HAPP.txt": {
       "bytes": 984,
@@ -48,7 +48,7 @@
     },
     "SUBSCRIPTION-HAPP.txt": {
       "bytes": 1020,
-      "sha256": "0b2a86aaa5e2a63316db489e547ad5726e686d11692f1e3d546f0248a0a4c498"
+      "sha256": "8022cec62d6d366c41f57ac72cc68018dbb411d799dae11e508571029551c2d9"
     },
     "README.md": {
       "bytes": 1070,
