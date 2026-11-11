@@ -43,6 +43,7 @@
     "fe80::/10"
   ],
   "ProxySites": [
+    "full:gamewith.jp",
     "full:proxyium.com",
     "full:sinoptik.ua",
     "full:tenki.jp",
