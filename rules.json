@@ -43,6 +43,7 @@
     "fe80::/10"
   ],
   "ProxySites": [
+    "full:pbskids.org",
     "full:vivoglobal.com",
     "full:nou.edu.ng",
     "full:xhaccess.com",
