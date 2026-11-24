@@ -1,8 +1,8 @@
 {
-  "source_commit": "a385c700e339ec4f99e29b3d5c470edfb959afb3",
-  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/a385c700e339ec4f99e29b3d5c470edfb959afb3/vpn_rules.conf",
-  "source_commit_date": "2026-11-17T03:14:18Z",
-  "source_sha256": "74af87ddaab7d994c248225d542d7e6cf0abd4ce366a8c526565a11979e37630",
+  "source_commit": "985eab5b944f5e25524427edfead8f7d54b95bb8",
+  "source_url": "https://raw.githubusercontent.com/Alesnyt/vpn_rules/985eab5b944f5e25524427edfead8f7d54b95bb8/vpn_rules.conf",
+  "source_commit_date": "2026-11-24T10:14:07+03:00",
+  "source_sha256": "810f8c0aedb731baf20cc80e95d75373dd79585f656bc6ef425dadeaba1f66ea",
   "profile_name": "AlexClubs Selective",
   "checks": {
     "domain_probes": 6463,
@@ -15,7 +15,7 @@
     "ProxyIp": 106
   },
   "delivery": "Manual stable shell or optional subscription routing/add header with LastUpdated release version",
-  "subscription_profile_version": "1794885258",
+  "subscription_profile_version": "1795504447",
   "asn_note": "RIPEstat observed BGP prefix snapshot; refreshed on build, not live ASN matching",
   "dns_bootstrap_direct": {
     "dns.google": "8.8.8.8",
@@ -40,7 +40,7 @@
     },
     "asn-prefixes.json": {
       "bytes": 6120,
-      "sha256": "ab8b486515f75b50c52a312615ce1fb37db990fbf5fd91ebde3c90d63c414c14"
+      "sha256": "959052ed1b65d2fe0bb00ac235a108b89078f5582f7375f49c15d223e7bb7714"
     },
     "IMPORT-HAPP.txt": {
       "bytes": 984,
@@ -48,7 +48,7 @@
     },
     "SUBSCRIPTION-HAPP.txt": {
       "bytes": 1020,
-      "sha256": "0c83fd61cca2a77b988d1c656d80a84d51c11743f2b639a6d054d33059388aaa"
+      "sha256": "0147cbf7d66e549b0f3d9fbd6d99d833b543e55e8823bb9da17a440535aa78f0"
     },
     "README.md": {
       "bytes": 1070,
